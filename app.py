@@ -29,20 +29,23 @@ def index():
 def edition():
 
     # Check for required vars
-    if not request.args.get('local_delivery_time', False):
-        return ("Error: No local_delivery_time was provided", 400)
+    #if not request.args.get('local_delivery_time', False):
+    #    return ("Error: No local_delivery_time was provided", 400)
         
-    if not request.args.get('lang', False):
-        return ("Error: No lang was provided", 400)
+    #if not request.args.get('lang', False):
+    #    return ("Error: No lang was provided", 400)
         
-    if not request.args.get('name', False):
-        return ("No name was provided", 400)
+    #if not request.args.get('name', False):
+    #    return ("No name was provided", 400)
 
-    date = dateutil.parser.parse(request.args['local_delivery_time'])
+    #date = dateutil.parser.parse(request.args['local_delivery_time'])
+    date = datetime.date.today()
 
     # Extract configuration provided by user through BERG Cloud. These options are defined by the JSON in meta.json.
-    language = request.args['lang']
-    name = request.args['name']
+    #language = request.args['lang']
+    #name = request.args['name']
+    language = ''
+    name = ''
 
     greeting = ''
 
