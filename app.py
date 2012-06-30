@@ -16,6 +16,14 @@ greetings = {"english" : ["Good morning", "Hello", "Good evening"],
     "italian" : ["Buongiorno", "ciao", "Buonasera"], 
     "swedish": ["God morgon", "Hall&#229;", "God kv&#228;ll"]}
 
+@app.route("/")
+def index():
+    return """
+<a href="/edition/?lang=spanish&name=Pablo&local_delivery_time=1997-07-16T19:20:30.45+01:00">/edition/</a><br>
+
+
+"""
+
 # Edition                        
 @app.route("/edition/")
 def edition():
@@ -30,21 +38,13 @@ def edition():
     if not request.args.get('name', False):
         return ("No name was provided", 400)
 
-    # Our publication is only delivered on Mondays, so we need to work out if it is a Monday in the subscriber's timezone. 
     date = dateutil.parser.parse(request.args['local_delivery_time'])
-    if not date.weekday() == 0:
-        return ("It is not a Monday", 406)
 
     # Extract configuration provided by user through BERG Cloud. These options are defined by the JSON in meta.json.
     language = request.args['lang']
     name = request.args['name']
 
-    # Pick a time of day appropriate greeting
-    greeting = greetings[language][0]
-    if date.hour >= 12 and date.hour <=17:
-        greeting = greetings[language][1]
-    if (date.hour > 17 and date.hour <=24) or (date.hour >= 0 and date.hour <= 3):
-        greeting = greetings[language][2]
+    greeting = ''
 
     # Set the etag to be this content. This means the user will not get the same content twice, 
     # but if they reset their subscription (with, say, a different language they will get new content 
