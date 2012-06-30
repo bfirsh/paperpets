@@ -17,11 +17,14 @@
     .paper {
         /* full width of paper, inc margins */
         height: 456px;
-        border-top: 2px dashed #000;
         border-bottom: 2px dashed #000;
         position: relative;
         margin-bottom: 10px;
-    }
+      }
+
+      .paper:first-child {
+        border-top: 2px dashed #000;
+      }
     
     .paper img {
       position: absolute;
@@ -32,7 +35,11 @@
   </style>
 </head>
 <body>
-    {% if type == 'square' %}
+    {% if type == 'squares' %}
+    <div class="paper"></div>
+    <div class="paper"></div>
+    <div class="paper"></div>
+    <div class="paper"></div>
     <div class="paper"></div>
     {% else %}
     
