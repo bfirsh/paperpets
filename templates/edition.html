@@ -20,6 +20,7 @@
         border-top: 2px dashed #000;
         border-bottom: 2px dashed #000;
         position: relative;
+        margin-bottom: 10px;
     }
     
     .paper img {
@@ -75,6 +76,10 @@
   </style>
 </head>
 <body>
+    {% if type == 'square' %}
+    <div class="paper"></div>
+    {% else %}
+    
   <h1>You got Wally the Whale!</h1>
   
   <section>
@@ -101,7 +106,7 @@
         </figure>
       </li>
     </ol>
-  
+
   <div class="paper">
     <img src="../static/instruction-mockup.png" />
   </div>
@@ -109,5 +114,7 @@
   <div class="paper">
     <img src="../static/test.png" />
   </div>
+
+  {% endif %}
 </body>
 </html>
