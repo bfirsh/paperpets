@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, make_response, url_for, send_from_directory
+import datetime
 import json
 import dateutil.parser
 import hashlib
@@ -63,6 +64,7 @@ def sample():
 
     # Build response
     response = make_response(render_template('hello_world.html', greeting=greeting))
+    date = datetime.date.today()
     response.headers['ETag'] = hashlib.sha224(language+name+date.strftime('%d%m%Y')).hexdigest()
     return response
 
@@ -103,5 +105,4 @@ def icon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'icon.png', mimetype='image/png')
                                        
 if __name__ == "__main__":
-    app.debug = True    
-    app.run()
+    app.run(host='0.0.0.0', debug=True)
