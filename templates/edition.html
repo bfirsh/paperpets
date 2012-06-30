@@ -35,14 +35,10 @@
         font-size: 1.5em;
       }
 
-      .paper-wrapper {
-        background-image: url('/static/scissors.png');
-        background-repeat: no-repeat;
-        background-position: top right;
-        background-size: 54px;
-        padding-top: 40px;
-        margin-top: -20px;
-          
+      .scissors {
+        text-align: right;
+        height: 32px;
+        margin-top: -32px;
       }
 
     .paper {
@@ -151,11 +147,10 @@
       {% endfor %}
     </ol>
     <h3>Paper</h3>
-    <div class="paper-wrapper">
+    <div class="scissors"><img src="/static/scissors.png"></div>
     <div class="paper">
       <img src="/static/pets/{{ pet }}/paper.png" />
     </div>
-  </div>
 
   {% endif %}
 </body>
