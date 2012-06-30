@@ -17,15 +17,20 @@
     .paper {
         /* full width of paper, inc margins */
         height: 456px;
+        border-top: 2px dashed #000;
         border-bottom: 2px dashed #000;
         position: relative;
         margin-bottom: 20px;
       }
 
-      .paper:first-child {
-        border-top: 2px dashed #000;
+      .paper .square {
+        border-bottom: 2px dashed #000;
       }
     
+      .paper .square:first-child {
+        border-bottom: 0;
+      }
+
     .paper img {
       position: absolute;
       top: 0;
@@ -89,11 +94,13 @@
 </head>
 <body>
     {% if type == 'squares' %}
-    <div class="paper"></div>
-    <div class="paper"></div>
-    <div class="paper"></div>
-    <div class="paper"></div>
-    <div class="paper"></div>
+      <div class="paper">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+      </div>
     {% else %}
     
   <h1>You got Wally the Whale!</h1>
