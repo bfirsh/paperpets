@@ -4,71 +4,38 @@ import json
 import dateutil.parser
 import hashlib
 import os
+import random
 
 app = Flask(__name__)
-
-# Define some greetings for different times of the day in different languages
-greetings = {"english" : ["Good morning", "Hello", "Good evening"], 
-    "french" : ["Bonjour", "Bonjour", "Bonsoir"], 
-    "german" : ["Guten morgen", "Hallo" "Guten abend"], 
-    "spanish" : ["Buenos d&#237;as", "Hola", "Buenas noches"], 
-    "portuguese" : ["Bom dia", "Ol&#225;", "Boa noite"], 
-    "italian" : ["Buongiorno", "ciao", "Buonasera"], 
-    "swedish": ["God morgon", "Hall&#229;", "God kv&#228;ll"]}
 
 @app.route("/")
 def index():
     return """
-<a href="/edition/?lang=spanish&name=Pablo&local_delivery_time=1997-07-16T19:20:30.45+01:00">/edition/</a><br>
+<a href="/edition/>/edition/</a><br>
 
 
 """
 
-# Edition                        
 @app.route("/edition/")
+@app.route("/sample/")
 def edition():
 
     # Check for required vars
-    #if not request.args.get('local_delivery_time', False):
-    #    return ("Error: No local_delivery_time was provided", 400)
+    if request.args.get('local_delivery_time', False):
+        date = dateutil.parser.parse(request.args['local_delivery_time'])
+    else:
+        date = datetime.date.today()
         
-    #if not request.args.get('lang', False):
-    #    return ("Error: No lang was provided", 400)
-        
-    #if not request.args.get('name', False):
-    #    return ("No name was provided", 400)
-
-    #date = dateutil.parser.parse(request.args['local_delivery_time'])
-    date = datetime.date.today()
-
-    # Extract configuration provided by user through BERG Cloud. These options are defined by the JSON in meta.json.
-    #language = request.args['lang']
-    #name = request.args['name']
-    language = ''
-    name = ''
-
-    greeting = ''
+    lang = request.args.get('lang', 'english')
+    name = request.args.get('name', 'Little Printer')
 
     # Set the etag to be this content. This means the user will not get the same content twice, 
     # but if they reset their subscription (with, say, a different language they will get new content 
     # if they also set their subscription to be in the future)
-    response = make_response(render_template('hello_world.html', greeting=greeting))
-    response.headers['ETag'] = hashlib.sha224(language+name+date.strftime('%d%m%Y')).hexdigest()
-    return response
-
-# Sample publication
-@app.route("/sample/")
-def sample():
-
-    # Example data 
-    language = 'english';
-    name = 'Little Printer';
-    greeting = "%s, %s" % (greetings[language][0], name)
-
-    # Build response
-    response = make_response(render_template('hello_world.html', greeting=greeting))
-    date = datetime.date.today()
-    response.headers['ETag'] = hashlib.sha224(language+name+date.strftime('%d%m%Y')).hexdigest()
+    response = make_response(render_template('edition.html'))
+    #etag = hashlib.sha224(language+name+date.strftime('%d%m%Y')).hexdigest()
+    etag = "%032x" % random.getrandbits(128)
+    response.headers['ETag'] = etag
     return response
 
 #Validate config e.g. /validate_config/?config={"lang":"english","name":"Pablo"}
