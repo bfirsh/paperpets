@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hello World</title>
+  <title>Paper Pet Edition</title>
   <style type="text/css">
     body {
       width: 384px;
       padding: 0px;
       margin: 0px;
     }
+    
     h1 {
       word-wrap: break-word;
       font-family:sans-serif;
@@ -19,6 +20,7 @@
         border-top: 2px dashed #000;
         border-bottom: 2px dashed #000;
         position: relative;
+        margin-bottom: 10px;
     }
     
     .paper img {
@@ -30,9 +32,43 @@
   </style>
 </head>
 <body>
+    {% if type == 'square' %}
+    <div class="paper"></div>
+    {% else %}
+    
   <h1>You got Wally the Whale!</h1>
+  
+  <section>
+    <header>
+      <h1>Folding Instructions</h1>
+    </header>
+    <ol>
+      <li>
+        <figure>
+          <img src="" />
+          <figcaption>
+            Fold in half to crease.
+          </figcaption>
+        </figure>
+      </li>
+      <li>
+        <figure>
+          <img src="" />
+          <figcaption>
+            Flip and fold in the sides.
+          </figcaption>
+        </figure>
+      </li>
+    </ol>
+
+  <div class="paper">
+    <img src="../static/instruction-mockup.png" />
+  </div>
+    
   <div class="paper">
     <img src="../static/test.png" />
   </div>
+
+  {% endif %}
 </body>
 </html>

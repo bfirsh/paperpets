@@ -29,10 +29,12 @@ def edition():
     lang = request.args.get('lang', 'english')
     name = request.args.get('name', 'Little Printer')
 
+    type = request.args.get('type', '')
+
     # Set the etag to be this content. This means the user will not get the same content twice, 
     # but if they reset their subscription (with, say, a different language they will get new content 
     # if they also set their subscription to be in the future)
-    response = make_response(render_template('edition.html'))
+    response = make_response(render_template('edition.html', type=type))
     #etag = hashlib.sha224(language+name+date.strftime('%d%m%Y')).hexdigest()
     etag = "%032x" % random.getrandbits(128)
     response.headers['ETag'] = etag
