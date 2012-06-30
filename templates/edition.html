@@ -4,6 +4,7 @@
   <title>Paper Pet Edition</title>
   <style type="text/css">
     body {
+      font-family:'Quicksand', sans-serif;
       width: 384px;
       padding: 0px;
       margin: 0px;
@@ -11,69 +12,114 @@
     
     h1 {
       word-wrap: break-word;
-      font-family:sans-serif;
     }
 
     .paper {
         /* full width of paper, inc margins */
         height: 456px;
+        border-top: 2px dashed #000;
         border-bottom: 2px dashed #000;
         position: relative;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
 
-      .paper:first-child {
-        border-top: 2px dashed #000;
+      .paper .square {
+        border-bottom: 2px dashed #000;
       }
     
+      .paper .square:first-child {
+        border-bottom: 0;
+      }
+
     .paper img {
       position: absolute;
       top: 0;
       left: -36px;
     }
     
+    .count {
+      display: block;
+      width: 30px;
+      height: 30px;
+      background: black;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
+      line-height: 32px;
+      border-radius: 15px;
+    }
+    
+    .instructions {
+      padding: 0;
+      margin: 0;
+    }
+    
+    .instructions li {
+      width: 192px;
+      height: 280px;
+      float: left;
+      list-style: none;
+      font-size: 20px;
+    }
+    
+    .instructions li figure {
+      margin: 0;
+      padding: 0;
+    }
+    .instructions li img {
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+    }
+    
+    .instructions li figcaption {
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .clearfix:before,
+    .clearfix:after {
+      content: "";
+      display: table;
+    }
+    .clearfix:after {
+      clear: both;
+    }
+    .clearfix {
+      *zoom: 1;
+    }
+    
   </style>
 </head>
 <body>
-    {% if type == 'squares' %}
-    <div class="paper"></div>
-    <div class="paper"></div>
-    <div class="paper"></div>
-    <div class="paper"></div>
-    <div class="paper"></div>
+    {% if pet == 'squares' %}
+      <div class="paper">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+      </div>
     {% else %}
     
-  <h1>You got Wally the Whale!</h1>
+    <h1>You got {{ meta.name }}!</h1>
   
-  <section>
-    <header>
-      <h1>Folding Instructions</h1>
-    </header>
-    <ol>
-      <li>
-        <figure>
-          <img src="" />
-          <figcaption>
-            Fold in half to crease.
-          </figcaption>
-        </figure>
+  <h2>Folding Instructions</h2>
+  <ol class="instructions clearfix">
+    {% for step in meta.steps %}
+    <li>
+      <span class="count">{{ loop.index }}</span>
+      <figure>
+        <img src="/static/pets/{{ pet }}/{{ loop.index }}.png">
+        <figcaption>{{ step }}</figcaption>
+      </figure>
       </li>
-      <li>
-        <figure>
-          <img src="" />
-          <figcaption>
-            Flip and fold in the sides.
-          </figcaption>
-        </figure>
-      </li>
+      {% endfor %}
     </ol>
-
+  
   <div class="paper">
-    <img src="../static/instruction-mockup.png" />
-  </div>
-    
-  <div class="paper">
-    <img src="../static/test.png" />
+    <img src="/static/pets/{{ pet }}/paper.png" />
   </div>
 
   {% endif %}

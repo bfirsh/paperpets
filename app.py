@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, url_for, send_from_directory
+from flask import Flask, render_template, request, make_response, url_for, send_from_directory, redirect
 import datetime
 import json
 import dateutil.parser
@@ -10,11 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return """
-<a href="/edition/>/edition/</a><br>
-
-
-"""
+    return redirect('/edition/')
 
 @app.route("/edition/")
 @app.route("/sample/")
@@ -29,12 +25,20 @@ def edition():
     lang = request.args.get('lang', 'english')
     name = request.args.get('name', 'Little Printer')
 
-    type = request.args.get('type', '')
+    pets = os.listdir(os.path.join(app.static_folder, 'pets'))
+
+    pet = request.args.get('pet', random.choice(pets))
+    pet_dir = os.path.join(app.static_folder, 'pets', pet)
+
+    meta = json.load(open(os.path.join(pet_dir, 'meta.json')))
 
     # Set the etag to be this content. This means the user will not get the same content twice, 
     # but if they reset their subscription (with, say, a different language they will get new content 
     # if they also set their subscription to be in the future)
-    response = make_response(render_template('edition.html', type=type))
+    response = make_response(render_template('edition.html', 
+        pet=pet,
+        meta=meta,
+    ))
     #etag = hashlib.sha224(language+name+date.strftime('%d%m%Y')).hexdigest()
     etag = "%032x" % random.getrandbits(128)
     response.headers['ETag'] = etag
