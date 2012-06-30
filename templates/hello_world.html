@@ -18,11 +18,21 @@
         height: 456px;
         border-top: 2px dashed #000;
         border-bottom: 2px dashed #000;
+        position: relative;
     }
+    
+    .paper img {
+      position: absolute;
+      top: 0;
+      left: -36px;
+    }
+    
   </style>
 </head>
 <body>
   <h1>You got Wally the Whale!</h1>
-  <div class="paper"></div>
+  <div class="paper">
+    <img src="../static/test.png" />
+  </div>
 </body>
 </html>
