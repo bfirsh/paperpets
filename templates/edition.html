@@ -35,6 +35,8 @@
       height: 30px;
       background: black;
       color: white;
+      font-weight: bold;
+      font-size: 24px;
       text-align: center;
       line-height: 32px;
       border-radius: 15px;
@@ -47,6 +49,7 @@
     
     .instructions li {
       width: 192px;
+      height: 280px;
       float: left;
       list-style: none;
       font-size: 20px;
@@ -56,8 +59,14 @@
       margin: 0;
       padding: 0;
     }
+    .instructions li img {
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+    }
     
     .instructions li figcaption {
+      margin-top: 20px;
       text-align: center;
     }
     
@@ -87,25 +96,63 @@
     <li>
       <span class="count">1</span>
       <figure>
-        <img src="" />
+        <img src="../static/whale/whale_1.png" />
         <figcaption>
-          Fold in half to crease.
+          Fold in half to crease
         </figcaption>
       </figure>
     </li>
     <li>
       <span class="count">2</span>
       <figure>
-        <img src="" />
+        <img src="../static/whale/whale_2.png" />
         <figcaption>
-          Flip and fold in the sides.
+          Flip and fold in the sides
+        </figcaption>
+      </figure>
+    </li>
+    
+    <li>
+      <span class="count">3</span>
+      <figure>
+        <img src="../static/whale/whale_3.png" />
+        <figcaption>
+          Fold in the left corner
+        </figcaption>
+      </figure>
+    </li>
+    <li>
+      <span class="count">4</span>
+      <figure>
+        <img src="../static/whale/whale_4.png" />
+        <figcaption>
+          Fold in half
+        </figcaption>
+      </figure>
+    </li>
+    
+    <li>
+      <span class="count">5</span>
+      <figure>
+        <img src="../static/whale/whale_5.png" />
+        <figcaption>
+          Crease the tail
+        </figcaption>
+      </figure>
+    </li>
+    <li>
+      <span class="count">6</span>
+      <figure>
+        <img src="../static/whale/whale_6.png" />
+        <figcaption>
+          Fold up the tail to finish
         </figcaption>
       </figure>
     </li>
   </ol>
   
   <div class="paper">
-    <img src="../static/test.png" />
+    <img src="../static/whale/pattern.png" />
   </div>
 
   {% endif %}
