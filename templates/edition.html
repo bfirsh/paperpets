@@ -93,7 +93,7 @@
   </style>
 </head>
 <body>
-    {% if type == 'squares' %}
+    {% if pet == 'squares' %}
       <div class="paper">
         <div class="square"></div>
         <div class="square"></div>
@@ -103,70 +103,23 @@
       </div>
     {% else %}
     
-  <h1>You got Wally the Whale!</h1>
+    <h1>You got {{ meta.name }}!</h1>
   
   <h2>Folding Instructions</h2>
   <ol class="instructions clearfix">
+    {% for step in meta.steps %}
     <li>
-      <span class="count">1</span>
+      <span class="count">{{ loop.index }}</span>
       <figure>
-        <img src="../static/whale/whale_1.png" />
-        <figcaption>
-          Fold in half to crease
-        </figcaption>
+        <img src="/static/pets/{{ pet }}/{{ loop.index }}.png">
+        <figcaption>{{ step }}</figcaption>
       </figure>
-    </li>
-    <li>
-      <span class="count">2</span>
-      <figure>
-        <img src="../static/whale/whale_2.png" />
-        <figcaption>
-          Flip and fold in the sides
-        </figcaption>
-      </figure>
-    </li>
-    
-    <li>
-      <span class="count">3</span>
-      <figure>
-        <img src="../static/whale/whale_3.png" />
-        <figcaption>
-          Fold in the left corner
-        </figcaption>
-      </figure>
-    </li>
-    <li>
-      <span class="count">4</span>
-      <figure>
-        <img src="../static/whale/whale_4.png" />
-        <figcaption>
-          Fold in half
-        </figcaption>
-      </figure>
-    </li>
-    
-    <li>
-      <span class="count">5</span>
-      <figure>
-        <img src="../static/whale/whale_5.png" />
-        <figcaption>
-          Crease the tail
-        </figcaption>
-      </figure>
-    </li>
-    <li>
-      <span class="count">6</span>
-      <figure>
-        <img src="../static/whale/whale_6.png" />
-        <figcaption>
-          Fold up the tail to finish
-        </figcaption>
-      </figure>
-    </li>
-  </ol>
+      </li>
+      {% endfor %}
+    </ol>
   
   <div class="paper">
-    <img src="../static/whale/pattern.png" />
+    <img src="/static/pets/{{ pet }}/paper.png" />
   </div>
 
   {% endif %}
