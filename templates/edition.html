@@ -76,41 +76,34 @@
   </style>
 </head>
 <body>
-    {% if type == 'square' %}
-    <div class="paper"></div>
-    {% else %}
+  {% if type == 'square' %}
+  <div class="paper"></div>
+  {% else %}
     
   <h1>You got Wally the Whale!</h1>
   
-  <section>
-    <header>
-      <h1>Folding Instructions</h1>
-    </header>
-    <ol class="instructions clearfix">
-      <li>
-        <span class="count">1</span>
-        <figure>
-          <img src="" />
-          <figcaption>
-            Fold in half to crease.
-          </figcaption>
-        </figure>
-      </li>
-      <li>
-        <span class="count">2</span>
-        <figure>
-          <img src="" />
-          <figcaption>
-            Flip and fold in the sides.
-          </figcaption>
-        </figure>
-      </li>
-    </ol>
-
-  <div class="paper">
-    <img src="../static/instruction-mockup.png" />
-  </div>
-    
+  <h2>Folding Instructions</h2>
+  <ol class="instructions clearfix">
+    <li>
+      <span class="count">1</span>
+      <figure>
+        <img src="" />
+        <figcaption>
+          Fold in half to crease.
+        </figcaption>
+      </figure>
+    </li>
+    <li>
+      <span class="count">2</span>
+      <figure>
+        <img src="" />
+        <figcaption>
+          Flip and fold in the sides.
+        </figcaption>
+      </figure>
+    </li>
+  </ol>
+  
   <div class="paper">
     <img src="../static/test.png" />
   </div>
