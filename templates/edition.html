@@ -6,14 +6,44 @@
     body {
       font-family:'Quicksand', sans-serif;
       width: 384px;
-      padding: 0px;
+      padding: 20px 0px;
       margin: 0px;
       line-height: 1.3;
     }
     
     h1 {
-      word-wrap: break-word;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 1em;
+      margin-bottom: 30px;
     }
+
+    h1 span {
+        padding-bottom: 1px;
+        border-bottom: 1px solid black;
+    }
+
+    h2 {
+        text-align: center;
+        word-wrap: break-word;
+        font-size: 2em;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 1.5em;
+      }
+
+      .paper-wrapper {
+        background-image: url('/static/scissors.png');
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 54px;
+        padding-top: 40px;
+        margin-top: -20px;
+          
+      }
 
     .paper {
         /* full width of paper, inc margins */
@@ -21,7 +51,7 @@
         border-top: 2px dashed #000;
         border-bottom: 2px dashed #000;
         position: relative;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
       }
 
       .paper .square {
@@ -53,7 +83,7 @@
     
     .instructions {
       padding: 0;
-      margin: 0;
+      margin: 0 0 10px 0;
     }
     
     .instructions li {
@@ -103,10 +133,12 @@
         <div class="square"></div>
       </div>
     {% else %}
-    
-    <h1>You got {{ meta.name }}!</h1>
+
+      <h1><span>Paper Pets</span></h1>
+
+    <h2>{{ meta.name }}</h2>
   
-  <h2>Folding Instructions</h2>
+  <h3>Instructions</h3>
   <ol class="instructions clearfix">
     {% for step in meta.steps %}
     <li>
@@ -118,9 +150,11 @@
       </li>
       {% endfor %}
     </ol>
-  
-  <div class="paper">
-    <img src="/static/pets/{{ pet }}/paper.png" />
+    <h3>Paper</h3>
+    <div class="paper-wrapper">
+    <div class="paper">
+      <img src="/static/pets/{{ pet }}/paper.png" />
+    </div>
   </div>
 
   {% endif %}
