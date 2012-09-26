@@ -4,7 +4,7 @@
     "delivered_on": "Mondays",
     "send_timezone_info": "true",
     "send_delivery_count": "false",
-    "external_configuration": "false",
+    "external_configuration": "true",
     "config" : {
       "fields": [
           {
