@@ -150,6 +150,11 @@
     <div class="scissors"><img src="/static/scissors.png"></div>
     <div class="paper">
       <img src="/static/pets/{{ pet }}/paper.png" />
+      {% for name, image in variations.items() %}
+        {% if image %}
+          <img src="/static/pets/{{ pet }}/variations/{{ name }}/{{ image }}.png" />
+        {% endif %}
+      {% endfor %}
     </div>
 
   {% endif %}

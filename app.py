@@ -5,6 +5,7 @@ import dateutil.parser
 import hashlib
 import os
 import random
+import uuid
 
 app = Flask(__name__)
 
@@ -15,34 +16,55 @@ def index():
 @app.route("/edition/")
 @app.route("/sample/")
 def edition():
+    # NO CHEATING
+    random.seed()
 
-    # Check for required vars
+    # Berg stuff
     if request.args.get('local_delivery_time', False):
         date = dateutil.parser.parse(request.args['local_delivery_time'])
     else:
         date = datetime.date.today()
-        
+    
     lang = request.args.get('lang', 'english')
     name = request.args.get('name', 'Little Printer')
 
-    pets = os.listdir(os.path.join(app.static_folder, 'pets'))
+    # Our stuff
+    user_id = request.args.get('user_id')
 
+    # Load pet
+    pets = os.listdir(os.path.join(app.static_folder, 'pets'))
     pet = request.args.get('pet', random.choice(pets))
     pet_dir = os.path.join(app.static_folder, 'pets', pet)
-
     meta = json.load(open(os.path.join(pet_dir, 'meta.json')))
 
-    # Set the etag to be this content. This means the user will not get the same content twice, 
-    # but if they reset their subscription (with, say, a different language they will get new content 
-    # if they also set their subscription to be in the future)
+    # Pick variations
+    variations = {}
+    for name, types in meta.get('variations', {}).items():
+        if request.args.get('variation-%s' % name):
+            variations[name] = request.args.get('variation-%s' % name)
+        else:
+            l = []
+            for image, probability in types.items():
+                l.extend([image] * probability)
+            variations[name] = random.choice(l)
+
     response = make_response(render_template('edition.html', 
         pet=pet,
         meta=meta,
+        variations=variations,
     ))
-    #etag = hashlib.sha224(language+name+date.strftime('%d%m%Y')).hexdigest()
     etag = "%032x" % random.getrandbits(128)
     response.headers['ETag'] = etag
     return response
+
+@app.route('/configure/')
+def configure():
+    return_url = request.args.get('return_url')
+    if not return_url:
+        return 'no return_url argument'
+    # Generate a unique ID so we can identify folks who have pets
+    user_id = uuid.uuid4()
+    return redirect('%s?user_id=%s' % (return_url, user_id))
 
 #Validate config e.g. /validate_config/?config={"lang":"english","name":"Pablo"}
 @app.route("/validate_config/")
@@ -82,3 +104,4 @@ def icon():
                                        
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
+

@@ -7,5 +7,14 @@
         "Crease over the line",
         "Stick your finger inbetween the top and flatten it out",
         "Fenton should now be looking foxy"
-    ]
+    ],
+    "variations": {
+        "eyes": {
+            "glee": 5,
+            "asleep": 1
+        },
+        "pattern": {
+            "": 5
+        }
+    }
 }
