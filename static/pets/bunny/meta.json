@@ -1,5 +1,6 @@
 {
     "name": "Benny the Bunny",
+    "probability": 15,
     "steps": [
         "Looking at the [BLANK / LINES] side, fold in half",
         "Fold the two outer flaps into the center",
