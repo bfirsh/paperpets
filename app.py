@@ -4,10 +4,20 @@ import json
 import dateutil.parser
 import hashlib
 import os
+import pymongo
 import random
+import sys
 import uuid
 
 app = Flask(__name__)
+
+mongodb_url = os.getenv('MONGOLAB_URI', 'mongodb://localhost:27017')
+try:
+
+    db = pymongo.Connection(mongodb_url).paperpets
+except pymongo.errors.ConnectionFailure, e:
+    print e
+    print >>sys.stderr, 'Could not connect to MongoDB, not logging pets.'
 
 @app.route("/")
 def index():
@@ -31,26 +41,38 @@ def edition():
     # Our stuff
     user_id = request.args.get('user_id')
 
-    # Load pet
-    pets = os.listdir(os.path.join(app.static_folder, 'pets'))
-    pet = request.args.get('pet', random.choice(pets))
-    pet_dir = os.path.join(app.static_folder, 'pets', pet)
-    meta = json.load(open(os.path.join(pet_dir, 'meta.json')))
+    # Pick random pet
+    pet_names = pets.keys()
+    weights = [pets[name].get('probability', 1) for name in pet_names]
+    pet = pet_names[weighted_choice(weights)]
 
     # Pick variations
     variations = {}
-    for name, types in meta.get('variations', {}).items():
+    for name, types in pets[pet].get('variations', {}).items():
         if request.args.get('variation-%s' % name):
             variations[name] = request.args.get('variation-%s' % name)
         else:
             l = []
-            for image, probability in types.items():
-                l.extend([image] * probability)
-            variations[name] = random.choice(l)
+            images = types.keys()
+            weights = [types[image] for image in images]
+            variations[name] = images[weighted_choice(weights)]
+
+    
+    # Log edition
+    db.editions.insert({
+        # convert datetime.date to datetime.datetime
+        'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
+        'generation_date': datetime.datetime.utcnow(),
+        'user_id': user_id,
+        'lang': lang,
+        'name': name,
+        'pet': pet,
+        'variations': variations,
+    })
 
     response = make_response(render_template('edition.html', 
         pet=pet,
-        meta=meta,
+        meta=pets[pet],
         variations=variations,
     ))
     etag = "%032x" % random.getrandbits(128)
@@ -64,7 +86,7 @@ def configure():
         return 'no return_url argument'
     # Generate a unique ID so we can identify folks who have pets
     user_id = uuid.uuid4()
-    return redirect('%s?user_id=%s' % (return_url, user_id))
+    return redirect('%s?config[user_id]=%s' % (return_url, user_id))
 
 #Validate config e.g. /validate_config/?config={"lang":"english","name":"Pablo"}
 @app.route("/validate_config/")
@@ -101,7 +123,31 @@ def meta_json():
 @app.route('/icon.png')
 def icon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'icon.png', mimetype='image/png')
-                                       
+
+
+def load_pets():
+    """
+    Returns a dictionary mapping pet name to its metadata.
+    """
+    pets = {}
+    pet_names = os.listdir(os.path.join(app.static_folder, 'pets'))
+    for name in pet_names:
+        pet_dir = os.path.join(app.static_folder, 'pets', name)
+        pets[name] = json.load(open(os.path.join(pet_dir, 'meta.json')))
+    return pets
+
+def weighted_choice(weights):
+    """
+    http://eli.thegreenplace.net/2010/01/22/weighted-random-generation-in-python/
+    """
+    rnd = random.random() * sum(weights)
+    for i, w in enumerate(weights):
+        rnd -= w
+        if rnd < 0:
+            return i
+
+pets = load_pets()
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
 

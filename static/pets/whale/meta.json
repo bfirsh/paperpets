@@ -1,5 +1,6 @@
 {
     "name": "Wally the Whale",
+    "probability": 5,
     "steps": [
         "Fold in half to crease",
         "Flip and fold in the sides",

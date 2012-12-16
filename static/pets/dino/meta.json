@@ -1,0 +1,21 @@
+{
+    "name": "Doris the Dino",
+    "probability": 10,
+    "steps": [
+        "Looking at the [BLANK / LINES] side, fold in half",
+        "Fold the bottom corner into the center fold line",
+        "Fold the top corner over and the leftward of the fold line",
+        "Fold the new top & bottom corners to the center hold line",
+        "Fold in two and flip over",
+        "Fold the tail forward and the mouth bit back",
+        "Dinoriffic!"
+    ],
+    "variations": {
+        "eyes": {
+            "": 5
+        },
+        "pattern": {
+            "": 5
+        }
+    }
+}

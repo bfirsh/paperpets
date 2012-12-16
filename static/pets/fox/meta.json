@@ -1,5 +1,6 @@
 {
     "name": "Fenton the Fox",
+    "probability": 20,
     "steps": [
         "Looking at the blank side, fold the paper in half",
         "Fold the front flap up",
