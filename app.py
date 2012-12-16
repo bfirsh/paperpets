@@ -11,7 +11,7 @@ import uuid
 
 app = Flask(__name__)
 
-mongodb_url = os.getenv('MONGOLAB_URI', 'mongodb://localhost:27017')
+mongodb_url = os.getenv('MONGOHQ_URL', 'mongodb://localhost:27017')
 try:
 
     db = pymongo.Connection(mongodb_url).paperpets
