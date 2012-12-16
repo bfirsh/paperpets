@@ -4,10 +4,21 @@ import json
 import dateutil.parser
 import hashlib
 import os
+import pymongo
 import random
+import sys
+import urlparse
 import uuid
 
 app = Flask(__name__)
+
+mongo_url = os.getenv('MONGOHQ_URL', 'mongodb://localhost:27017/paperpets')
+try:
+
+    db = pymongo.Connection(mongo_url)[urlparse.urlparse(mongo_url).path[1:]]
+except pymongo.errors.ConnectionFailure, e:
+    print e
+    print >>sys.stderr, 'Could not connect to MongoDB, not logging pets.'
 
 @app.route("/")
 def index():
@@ -47,6 +58,19 @@ def edition():
             weights = [types[image] for image in images]
             variations[name] = images[weighted_choice(weights)]
 
+    
+    # Log edition
+    db.editions.insert({
+        # convert datetime.date to datetime.datetime
+        'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
+        'generation_date': datetime.datetime.utcnow(),
+        'user_id': user_id,
+        'lang': lang,
+        'name': name,
+        'pet': pet,
+        'variations': variations,
+    })
+
     response = make_response(render_template('edition.html', 
         pet=pet,
         meta=pets[pet],
@@ -63,7 +87,7 @@ def configure():
         return 'no return_url argument'
     # Generate a unique ID so we can identify folks who have pets
     user_id = uuid.uuid4()
-    return redirect('%s?user_id=%s' % (return_url, user_id))
+    return redirect('%s?config[user_id]=%s' % (return_url, user_id))
 
 #Validate config e.g. /validate_config/?config={"lang":"english","name":"Pablo"}
 @app.route("/validate_config/")
