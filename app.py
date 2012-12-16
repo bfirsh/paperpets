@@ -12,10 +12,10 @@ import uuid
 
 app = Flask(__name__)
 
-mongodb_url = os.getenv('MONGOHQ_URL', 'mongodb://localhost:27017/paperpets')
+mongo_url = os.getenv('MONGOHQ_URL', 'mongodb://localhost:27017/paperpets')
 try:
 
-    conn = pymongo.Connection(mongodb_url)[urlparse.urlparse(MONGO_URL).path[1:]]
+    db = pymongo.Connection(mongo_url)[urlparse.urlparse(mongo_url).path[1:]]
 except pymongo.errors.ConnectionFailure, e:
     print e
     print >>sys.stderr, 'Could not connect to MongoDB, not logging pets.'
