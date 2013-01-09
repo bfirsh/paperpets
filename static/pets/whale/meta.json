@@ -12,7 +12,8 @@
     "variations": {
         "pattern": {
             "": 5,
-            "dotted": 2
+            "dotted": 2,
+            "large-cross": 2
         }
     }
 }
