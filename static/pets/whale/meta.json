@@ -11,9 +11,11 @@
     ],
     "variations": {
         "pattern": {
-            "": 5,
+            "": 8,
             "dotted": 2,
-            "large-cross": 2
+            "large-cross": 2,
+            "small-cross": 2,
+            "alt-dots": 2
         }
     }
 }
