@@ -15,7 +15,8 @@
             "asleep": 1
         },
         "pattern": {
-            "": 5
+            "": 5,
+            "small-crosses": 2
         }
     }
 }

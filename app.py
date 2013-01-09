@@ -14,7 +14,6 @@ app = Flask(__name__)
 
 mongo_url = os.getenv('MONGOHQ_URL', 'mongodb://localhost:27017/paperpets')
 try:
-
     db = pymongo.Connection(mongo_url)[urlparse.urlparse(mongo_url).path[1:]]
 except pymongo.errors.ConnectionFailure, e:
     print e
@@ -35,7 +34,7 @@ def edition():
         date = dateutil.parser.parse(request.args['local_delivery_time'])
     else:
         date = datetime.date.today()
-    
+
     lang = request.args.get('lang', 'english')
     name = request.args.get('name', 'Little Printer')
 
@@ -45,7 +44,7 @@ def edition():
     # Pick random pet
     pet_names = pets.keys()
     weights = [pets[name].get('probability', 1) for name in pet_names]
-    pet = pet_names[weighted_choice(weights)]
+    pet = request.args.get('pet', pet_names[weighted_choice(weights)])
 
     # Pick variations
     variations = {}
