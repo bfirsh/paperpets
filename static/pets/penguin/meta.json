@@ -1,5 +1,5 @@
 {
-    "name": "Wally the Whale",
+    "name": "Petra the Penguin",
     "probability": 5,
     "steps": [
         "Plain side up, fold in the corners",
@@ -11,11 +11,9 @@
     ],
     "variations": {
         "pattern": {
-            "": 8,
-            "dotted": 2,
-            "large-cross": 2,
-            "small-cross": 2,
-            "alt-dots": 2
-        }
+     
+        },
+	"eyes": {
+	}
     }
 }
