@@ -1,0 +1,21 @@
+{
+    "name": "Wally the Whale",
+    "probability": 5,
+    "steps": [
+        "Plain side up, fold in the corners",
+        "Fold again",
+        "Fold in the bottom corner",
+        "Fold and push along the dotted line",
+        "Bend down for the head",
+        "Fold twice for the beak"
+    ],
+    "variations": {
+        "pattern": {
+            "": 8,
+            "dotted": 2,
+            "large-cross": 2,
+            "small-cross": 2,
+            "alt-dots": 2
+        }
+    }
+}
