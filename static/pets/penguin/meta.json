@@ -19,7 +19,8 @@
 		"zig-zag":3
         },
 	"eyes": {
-		"regular":1
+		"regular":5
+		"smiling":2
 	}
     }
 }
