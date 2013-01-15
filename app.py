@@ -16,6 +16,7 @@ mongo_url = os.getenv('MONGOHQ_URL', 'mongodb://localhost:27017/paperpets')
 try:
     db = pymongo.Connection(mongo_url)[urlparse.urlparse(mongo_url).path[1:]]
 except pymongo.errors.ConnectionFailure, e:
+    db = None
     print e
     print >>sys.stderr, 'Could not connect to MongoDB, not logging pets.'
 
@@ -59,16 +60,17 @@ def edition():
 
     
     # Log edition
-    db.editions.insert({
-        # convert datetime.date to datetime.datetime
-        'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
-        'generation_date': datetime.datetime.utcnow(),
-        'user_id': user_id,
-        'lang': lang,
-        'name': name,
-        'pet': pet,
-        'variations': variations,
-    })
+    if db is not None:
+      db.editions.insert({
+          # convert datetime.date to datetime.datetime
+          'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
+          'generation_date': datetime.datetime.utcnow(),
+          'user_id': user_id,
+          'lang': lang,
+          'name': name,
+          'pet': pet,
+          'variations': variations,
+      })
 
     response = make_response(render_template('edition.html', 
         pet=pet,
