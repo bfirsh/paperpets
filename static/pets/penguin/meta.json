@@ -3,17 +3,19 @@
     "probability": 5,
     "steps": [
         "Plain side up, fold in the corners",
-        "Fold again",
-        "Fold in the bottom corner",
+        "Fold in again",
+	"Fold in half",
         "Fold and push along the dotted line",
         "Bend down for the head",
-        "Fold twice for the beak"
+        "Fold twice for the beak",
+	"Petra is perfecto!"
     ],
     "variations": {
         "pattern": {
-     
+     		"stripes":9
         },
 	"eyes": {
+		"regular":1
 	}
     }
 }
