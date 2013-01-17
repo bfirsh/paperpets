@@ -16,7 +16,8 @@
 		"bricks":2,
 		"dots":5,
 		"stars":1,
-		"zig-zag":3
+		"zig-zag":3,
+		"houndstooth":1
         },
 	"eyes": {
 		"regular":5,
