@@ -8,5 +8,14 @@
         "Fold in half",
         "Crease the tail",
         "Fold up the tail to finish"
-    ]
+    ],
+    "variations": {
+        "pattern": {
+            "": 8,
+            "dotted": 2,
+            "large-cross": 2,
+            "small-cross": 2,
+            "alt-dots": 2
+        }
+    }
 }

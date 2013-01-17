@@ -1,0 +1,26 @@
+{
+    "name": "Petra the Penguin",
+    "probability": 5,
+    "steps": [
+        "Plain side up, fold in the corners",
+        "Fold in again",
+	"Fold in half",
+        "Fold and push along the dotted line",
+        "Bend down for the head",
+        "Fold twice for the beak",
+	"Petra is perfecto!"
+    ],
+    "variations": {
+        "pattern": {
+     		"stripes":7,
+		"bricks":2,
+		"dots":5,
+		"stars":1,
+		"zig-zag":3
+        },
+	"eyes": {
+		"regular":5
+		"smiling":2
+	}
+    }
+}

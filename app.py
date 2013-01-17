@@ -4,10 +4,21 @@ import json
 import dateutil.parser
 import hashlib
 import os
+import pymongo
 import random
+import sys
+import urlparse
 import uuid
 
 app = Flask(__name__)
+
+mongo_url = os.getenv('MONGOHQ_URL', 'mongodb://localhost:27017/paperpets')
+try:
+    db = pymongo.Connection(mongo_url)[urlparse.urlparse(mongo_url).path[1:]]
+except pymongo.errors.ConnectionFailure, e:
+    db = None
+    print e
+    print >>sys.stderr, 'Could not connect to MongoDB, not logging pets.'
 
 @app.route("/")
 def index():
@@ -24,7 +35,7 @@ def edition():
         date = dateutil.parser.parse(request.args['local_delivery_time'])
     else:
         date = datetime.date.today()
-    
+
     lang = request.args.get('lang', 'english')
     name = request.args.get('name', 'Little Printer')
 
@@ -34,7 +45,7 @@ def edition():
     # Pick random pet
     pet_names = pets.keys()
     weights = [pets[name].get('probability', 1) for name in pet_names]
-    pet = pet_names[weighted_choice(weights)]
+    pet = request.args.get('pet', pet_names[weighted_choice(weights)])
 
     # Pick variations
     variations = {}
@@ -46,6 +57,20 @@ def edition():
             images = types.keys()
             weights = [types[image] for image in images]
             variations[name] = images[weighted_choice(weights)]
+
+    
+    # Log edition
+    if db is not None:
+      db.editions.insert({
+          # convert datetime.date to datetime.datetime
+          'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
+          'generation_date': datetime.datetime.utcnow(),
+          'user_id': user_id,
+          'lang': lang,
+          'name': name,
+          'pet': pet,
+          'variations': variations,
+      })
 
     response = make_response(render_template('edition.html', 
         pet=pet,
@@ -63,7 +88,7 @@ def configure():
         return 'no return_url argument'
     # Generate a unique ID so we can identify folks who have pets
     user_id = uuid.uuid4()
-    return redirect('%s?user_id=%s' % (return_url, user_id))
+    return redirect('%s?config[user_id]=%s' % (return_url, user_id))
 
 #Validate config e.g. /validate_config/?config={"lang":"english","name":"Pablo"}
 @app.route("/validate_config/")
