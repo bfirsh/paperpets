@@ -19,7 +19,7 @@
 		"zig-zag":3
         },
 	"eyes": {
-		"regular":5
+		"regular":5,
 		"smiling":2
 	}
     }
