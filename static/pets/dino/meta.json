@@ -15,7 +15,13 @@
             "": 5
         },
         "pattern": {
-            "": 5
+            "blocks": 5,
+	    "diamonds":5,
+	    "grey":5,
+	    "houndstooth":5,
+	    "scales":5,
+	    "stars":5,
+	    "stripes":5
         }
     }
 }
