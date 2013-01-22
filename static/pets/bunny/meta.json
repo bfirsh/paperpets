@@ -19,6 +19,7 @@
             
         },
         "pattern": {
+	    "": 5,
             "blocks": 5,
             "diamonds": 2,
             "grey": 6,
