@@ -12,10 +12,19 @@
     ],
     "variations": {
         "eyes": {
-            "": 5
+            "fierce": 5,
+	    "smiling":2,
+	    "scrunched":1
         },
         "pattern": {
-            "": 5
+            "":7,
+            "blocks": 1,
+	    "diamonds":2,
+	    "grey":3,
+	    "houndstooth":2,
+	    "scales":5,
+	    "stars":3,
+	    "stripes":4
         }
     }
 }
