@@ -12,7 +12,10 @@
     ],
     "variations": {
         "pattern": {
-     		"stripes":7,
+		"":5
+		"blocks":2,
+		"diamonds":3,
+     		"stripes":4,
 		"bricks":2,
 		"dots":5,
 		"stars":1,
