@@ -12,7 +12,7 @@
     ],
     "variations": {
         "pattern": {
-		"":5
+		"":5,
 		"blocks":2,
 		"diamonds":3,
      		"stripes":4,

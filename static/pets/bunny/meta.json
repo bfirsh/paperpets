@@ -15,8 +15,7 @@
         "eyes": {
             "regular": 5,
             "scrunched": 1,
-            "smiling": 4,
-            
+            "smiling": 4
         },
         "pattern": {
 	    "": 5,

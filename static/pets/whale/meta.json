@@ -15,7 +15,13 @@
             "dotted": 2,
             "large-cross": 2,
             "small-cross": 2,
-            "alt-dots": 2
+            "alt-dots": 2,
+	    "blocks":2,
+	    "diamonds":2,
+   	    "houndstooth":2,
+	    "stars":2,
+  	    "stripes":2,
+            "zig-zag":2
         }
     }
 }
