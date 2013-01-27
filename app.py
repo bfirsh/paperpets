@@ -22,7 +22,7 @@ except pymongo.errors.ConnectionFailure, e:
 
 @app.route("/")
 def index():
-    return redirect('/edition/')
+    return make_response(render_template('index.html'))
 
 @app.route("/edition/")
 @app.route("/sample/")
