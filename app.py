@@ -132,7 +132,8 @@ def load_pets():
     Returns a dictionary mapping pet name to its metadata.
     """
     pets = {}
-    pet_names = os.listdir(os.path.join(app.static_folder, 'pets'))
+    #pet_names = os.listdir(os.path.join(app.static_folder, 'pets'))
+    pet_names = ['penguin', 'fox', 'whale', 'bunny', 'dino']
     for name in pet_names:
         pet_dir = os.path.join(app.static_folder, 'pets', name)
         pets[name] = json.load(open(os.path.join(pet_dir, 'meta.json')))
