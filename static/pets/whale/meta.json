@@ -10,18 +10,22 @@
         "Fold up the tail to finish"
     ],
     "variations": {
+	"eyes":{
+	  "smiling":1,
+	  "normal":5
+	}
         "pattern": {
-            "": 8,
-            "dotted": 2,
-            "large-cross": 2,
-            "small-cross": 2,
-            "alt-dots": 2,
-	    "blocks":2,
-	    "diamonds":2,
+            "": 5,
+            "dotted": 3,
+            "large-cross": 3,
+            "small-cross": 3,
+            "alt-dots": 3,
+	    "blocks":1,
+	    "diamonds":1,
    	    "houndstooth":2,
-	    "stars":2,
-  	    "stripes":2,
-            "zig-zag":2
+	    "stars":1,
+  	    "stripes":3,
+            "zig-zag":3
         }
     }
 }
