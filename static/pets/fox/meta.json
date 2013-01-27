@@ -11,11 +11,11 @@
     ],
     "variations": {
         "eyes": {
-            "glee": 6,
-            "asleep": 4,
-	    "glasses":2,
-	    "sun-glasses":1,
-	    "scrunched":3
+          "glee": 6,
+          "asleep": 4,
+          "glasses":2,
+          "sun-glasses":1,
+          "scrunched":3
         },
         "pattern": {
             "": 5,
@@ -23,11 +23,11 @@
             "large-cross": 3,
             "dotted": 3,
             "alt-dots": 3,
-	    "blocks":2,
-	    "diamonds":2,
-	    "houndstooth":2,
+            "blocks":2,
+            "diamonds":2,
+            "houndstooth":2,
             "stars":1,
-	    "stripes":2
+	          "stripes":2
         }
     }
 }

@@ -4,27 +4,27 @@
     "steps": [
         "Plain side up, fold in the corners",
         "Fold in again",
-	"Fold in half",
+	      "Fold in half",
         "Fold and push along the dotted line",
         "Bend down for the head",
         "Fold twice for the beak",
-	"Petra is perfecto!"
+	      "Petra is perfecto!"
     ],
     "variations": {
-        "pattern": {
-		"":5,
-		"blocks":2,
-		"diamonds":3,
-     		"stripes":4,
-		"bricks":2,
-		"dots":5,
-		"stars":1,
-		"zig-zag":3,
-		"houndstooth":1
+      "pattern": {
+        "":5,
+        "dots":5,
+        "stripes":4,
+        "diamonds":3,
+        "zig-zag":3,
+        "blocks":2,
+        "bricks":2,
+        "houndstooth":1,
+        "stars":1
         },
-	"eyes": {
-		"regular":5,
-		"smiling":2
-	}
-    }
+        "eyes": {
+          "regular":5,
+          "smiling":1
+        }
+   }
 }
