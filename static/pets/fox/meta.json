@@ -6,8 +6,8 @@
         "Fold the front flap up",
         "And do the same to the back flap",
         "Crease over the line",
-        "Stick your finger inbetween the top and flatten it out",
-        "Fenton should now be looking foxy"
+        "Stick your finger in-between the top and flatten it out",
+        "Looking foxy"
     ],
     
     "characters": {
@@ -15,55 +15,24 @@
       "Freddy":2,
       "Frank":1,
       "Faisal":1,
-      "Felix":2,
-      
-      "Fran":4,
-      "Farrah":2,
-      "Flora":3
+      "Farrah":2
     },
     
     "patterns": {
       "Fenton":{
-        "": 5,
-        "stripes": 4,
-        "dotted": 3,
-        "diamonds": 2
+        "stripes": 4
       },
       "Freddy":{
-        "":3,
-        "large-cross": 3,
-        "dotted": 3
+        "large-cross": 3
       },
       "Frank":{
-        "chess":2,
-        "stars":1
+        "chess":2
       },
       "Faisal":{
-        "flowers": 4,
-        "diamonds": 3
+        "check": 3
       },
-      "Felix":{
-        "blocks":2,
-        "houndstooth":2
-      },
-      
-      "Fran":{
-        "": 5,
-        "hearts": 3,
-        "stripes": 3,
-        "large-cross":2
-      },
-      
       "Farrah":{
-        "check": 1,
         "houndstooth": 3
-      },
-      "Flora":{
-        "": 5,
-        "flowers": 3,
-        "hearts": 3
       }
-      
-        
     }
 }

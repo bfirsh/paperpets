@@ -141,7 +141,7 @@ def load_pets():
     """
     pets = {}
     #pet_names = os.listdir(os.path.join(app.static_folder, 'pets'))
-    pet_names = ['fox']
+    pet_names = ['fox', 'whale', 'penguin', 'dino', 'bunny']
     for name in pet_names:
         pet_dir = os.path.join(app.static_folder, 'pets', name)
         pets[name] = json.load(open(os.path.join(pet_dir, 'meta.json')))

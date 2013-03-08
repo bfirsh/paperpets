@@ -1,5 +1,5 @@
 {
-    "name": "Petra the Penguin",
+    "name": "the Penguin",
     "probability": 5,
     "steps": [
         "Plain side up, fold in the corners",
@@ -8,23 +8,28 @@
         "Fold and push along the dotted line",
         "Bend down for the head",
         "Fold twice for the beak",
-	      "Petra is perfecto!"
+	      "Your penguin is perfecto!"
     ],
-    "variations": {
-      "pattern": {
-        "":5,
-        "dots":5,
-        "stripes":4,
-        "diamonds":3,
-        "zig-zag":3,
-        "blocks":2,
-        "bricks":2,
-        "houndstooth":1,
-        "stars":1
-        },
-        "eyes": {
-          "regular":5,
-          "smiling":1
-        }
-   }
+    
+    "characters": {
+      "Phil":7,
+      "Pawel":2,
+      "Petra":1,
+      "Patsy":1
+    },
+    
+    "patterns": {
+      "Phil":{
+        "stripes": 4
+      },
+      "Pawel":{
+        "bricks": 3
+      },
+      "Petra":{
+        "check":2
+      },
+      "Patsy":{
+        "hearts": 3
+      }
+    }    
 }

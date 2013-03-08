@@ -1,5 +1,5 @@
 {
-    "name": "Doris the Dino",
+    "name": "the Dino",
     "probability": 10,
     "steps": [
         "Looking at the blank side, fold in half",
@@ -10,21 +10,23 @@
         "Fold the tail forward and the mouth bit back",
         "Dinoriffic!"
     ],
-    "variations": {
-        "eyes": {
-        "fierce": 5,
-        "smiling":2,
-        "scrunched":1
-        },
-        "pattern": {
-          "":7,
-          "scales":5,
-          "stripes":4,
-          "grey":3,
-          "stars":3,
-          "diamonds":2,
-          "houndstooth":2,
-          "blocks": 1
-        }
+    
+    "characters": {
+       "Doris":7,
+       "Dennis":2,
+       "Daisy":1
+     },
+
+     "patterns": {
+       "Doris":{
+         "stripes": 4
+       },
+       "Dennis":{
+         "diamonds": 3
+       },
+       "Daisy":{
+         "scales":2
+       }
+    
     }
 }

@@ -1,33 +1,38 @@
 {
-    "name": "Benny the Bunny",
+    "name": "the Bunny",
     "probability": 15,
     "steps": [
-        "Looking at the [BLANK / LINES] side, fold in half",
+        "Looking at the blank side, fold in half",
         "Fold the two outer flaps into the center",
         "Fold the corner inward",
         "And then fold part of it back over the marked line",
         "Fold in half",
         "Cut a slit along the fold line. About a third in length",
         "Fold the new flaps up so they point slightly back",
-        "Benny is ready to hop!"
+        "Your bunny is ready to hop!"
     ],
-    "variations": {
-        "eyes": {
-            "regular": 5,
-            "scrunched": 1,
-            "smiling": 4
-        },
-        "pattern": {
-	          "": 5,
-            "diamonds": 2,
-            "grey": 6,
-            "houndstooth": 3,
-            "stripes": 6,
-            "zigzag": 5,
-	          "stars": 1,
-	          "blocks": 1
-            
-
-        }
+    
+    "characters": {
+      "Benny":7,
+      "Blythe":6,
+      "Betty":5,
+      "Barney":3
+    },
+    
+    "patterns": {
+      "Benny":{
+        "grey": 4
+      },
+      "Blythe":{
+        "stripes": 3
+      },
+      "Betty":{
+        "hearts":2
+      },
+      "Barney":{
+        "zigzag": 3
+      }
     }
+      
+    
 }
