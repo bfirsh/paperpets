@@ -45,19 +45,26 @@ def edition():
     # Pick random pet
     pet_names = pets.keys()
     weights = [pets[name].get('probability', 1) for name in pet_names]
+
     pet = request.args.get('pet', pet_names[weighted_choice(weights)])
 
-    # Pick variations
-    variations = {}
-    for name, types in pets[pet].get('variations', {}).items():
-        if request.args.get('variation-%s' % name):
-            variations[name] = request.args.get('variation-%s' % name)
-        else:
-            l = []
-            images = types.keys()
-            weights = [types[image] for image in images]
-            variations[name] = images[weighted_choice(weights)]
+    # Pick characters
+    character_names = pets[pet]['characters'].keys()
+    weights = [pets[pet]['characters'][character] for character in character_names]
+    
+    character_name = character_names[weighted_choice(weights)]
 
+    # Pick patterns
+    patterns = {}
+    pattern_names = pets[pet]['patterns'][character_name].keys()
+    weights = [pets[pet]['patterns'][character_name][pattern] for pattern in pattern_names]
+
+    pattern = pattern_names[weighted_choice(weights)]
+    
+    variations = {}
+    variations['pattern'] = pattern
+    variations['character'] = character_name.lower()
+    
     
     # Log edition
     if db is not None:
@@ -75,6 +82,7 @@ def edition():
     response = make_response(render_template('edition.html', 
         pet=pet,
         meta=pets[pet],
+        name=character_name,
         variations=variations,
     ))
     etag = "%032x" % random.getrandbits(128)
@@ -133,7 +141,7 @@ def load_pets():
     """
     pets = {}
     #pet_names = os.listdir(os.path.join(app.static_folder, 'pets'))
-    pet_names = ['penguin', 'fox', 'whale', 'bunny', 'dino']
+    pet_names = ['fox']
     for name in pet_names:
         pet_dir = os.path.join(app.static_folder, 'pets', name)
         pets[name] = json.load(open(os.path.join(pet_dir, 'meta.json')))

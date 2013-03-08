@@ -1,5 +1,5 @@
 {
-    "name": "Fenton the Fox",
+    "name": "the Fox",
     "probability": 20,
     "steps": [
         "Looking at the blank side, fold the paper in half",
@@ -9,25 +9,61 @@
         "Stick your finger inbetween the top and flatten it out",
         "Fenton should now be looking foxy"
     ],
-    "variations": {
-        "eyes": {
-          "glee": 6,
-          "asleep": 4,
-          "glasses":2,
-          "sun-glasses":1,
-          "scrunched":3
-        },
-        "pattern": {
-            "": 5,
-            "small-cross": 3,
-            "large-cross": 3,
-            "dotted": 3,
-            "alt-dots": 3,
-            "blocks":2,
-            "diamonds":2,
-            "houndstooth":2,
-            "stars":1,
-	          "stripes":2
-        }
+    
+    "characters": {
+      "Fenton":7,
+      "Freddy":2,
+      "Frank":1,
+      "Faisal":1,
+      "Felix":2,
+      
+      "Fran":4,
+      "Farrah":2,
+      "Flora":3
+    },
+    
+    "patterns": {
+      "Fenton":{
+        "": 5,
+        "stripes": 4,
+        "dotted": 3,
+        "diamonds": 2
+      },
+      "Freddy":{
+        "":3,
+        "large-cross": 3,
+        "dotted": 3
+      },
+      "Frank":{
+        "chess":2,
+        "stars":1
+      },
+      "Faisal":{
+        "flowers": 4,
+        "diamonds": 3
+      },
+      "Felix":{
+        "blocks":2,
+        "houndstooth":2
+      },
+      
+      "Fran":{
+        "": 5,
+        "hearts": 3,
+        "stripes": 3,
+        "large-cross":2
+      },
+      
+      "Farrah":{
+        "check": 1,
+        "houndstooth": 3
+      },
+      "Flora":{
+        "": 5,
+        "flowers": 3,
+        "hearts": 3
+      }
+      
+        
     }
 }
