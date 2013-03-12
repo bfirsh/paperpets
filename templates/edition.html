@@ -28,6 +28,7 @@
         text-align: center;
         word-wrap: break-word;
         font-size: 2em;
+        margin-bottom:5px;
     }
 
     h3 {
@@ -116,7 +117,21 @@
     .clearfix {
       *zoom: 1;
     }
+    p {
+      text-align: center;
+      margin:0px;
+    }
     
+    #pet_identifier {
+      margin-top: 434px;
+      margin-left: 255px;
+      z-index: 10;
+      position: relative;
+    }
+    #pet_identifier span {
+      padding:5px;
+      background-color:white;
+    }
   </style>
 </head>
 <body>
@@ -133,7 +148,14 @@
       <h1><span>Paper Pets</span></h1>
 
       <h2>{{ name }} {{ meta.name }}</h2>
-  
+      <div>
+      <p><small>#{{pet_id}} of 20 to collect</small>
+      <br>
+      {% if rarity != '' %}
+        <small>&#9734;<strong>{{name}} is {{rarity}}!</strong>&#9734;</small>
+      {% endif %}
+      </p>
+      </div>
   <h3>Instructions</h3>
   <ol class="instructions clearfix">
     {% for step in meta.steps %}
@@ -149,14 +171,16 @@
     <h3>Paper</h3>
     <div class="scissors"><img src="/static/scissors.png"></div>
     <div class="paper">
+      <div id='pet_identifier'><span>#{{pet_id}}: {{name}}</span></div>
       <img src="/static/pets/{{ pet }}/paper.png" />
       {% for name, image in variations.items() %}
         {% if image %}
           <img src="/static/pets/{{ pet }}/variations/{{ name }}/{{ image }}.png" />
         {% endif %}
       {% endfor %}
+      
     </div>
-
+    
   {% endif %}
 </body>
 </html>
