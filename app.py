@@ -26,7 +26,9 @@ def index():
 
 @app.route("/sample/")
 def sample():
-  return send_from_directory(os.path.join(app.root_path, 'static'), 'sample.png', mimetype='image/png')
+  response = make_response(render_template('sample.html'))
+  
+  return response
 
   
 @app.route("/edition/")
@@ -43,7 +45,7 @@ def edition():
     response = make_response()
     
     # only return a pet if its a weekend
-    if date.weekday() == 5 or date.weekday == 6:
+    if date.weekday() == 5 or date.weekday() == 6:
 
       # Pick random animal
       pet_names = pets.keys()
