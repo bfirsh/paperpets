@@ -1,6 +1,6 @@
 {
     "name": "the Fox",
-    "probability": 20,
+    "probability": 2,
     "steps": [
         "Looking at the blank side, fold the paper in half",
         "Fold the front flap up",
@@ -11,28 +11,18 @@
     ],
     
     "characters": {
-      "Fenton":7,
-      "Freddy":2,
+      "Fenton":4,
+      "Freddy":3,
       "Frank":1,
       "Faisal":1,
-      "Farrah":2
+      "Farrah":1
     },
     
-    "patterns": {
-      "Fenton":{
-        "stripes": 4
-      },
-      "Freddy":{
-        "large-cross": 3
-      },
-      "Frank":{
-        "chess":2
-      },
-      "Faisal":{
-        "check": 3
-      },
-      "Farrah":{
-        "houndstooth": 3
-      }
+    "traits": {
+      "Fenton":{"pattern":"stripes", "id":5},
+      "Freddy":{"pattern":"large-cross", "id":6},
+      "Frank":{"pattern":"chess","id":7},
+      "Faisal":{"pattern":"check","id":8},
+      "Farrah":{"pattern":"houndstooth","id":9}
     }
 }

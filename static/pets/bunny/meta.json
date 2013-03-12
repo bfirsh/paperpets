@@ -1,6 +1,6 @@
 {
     "name": "the Bunny",
-    "probability": 15,
+    "probability": 3,
     "steps": [
         "Looking at the blank side, fold in half",
         "Fold the two outer flaps into the center",
@@ -13,25 +13,17 @@
     ],
     
     "characters": {
-      "Benny":7,
-      "Blythe":6,
-      "Betty":5,
-      "Barney":3
+      "Benny":2,
+      "Blythe":5,
+      "Betty":2,
+      "Barney":2
     },
     
-    "patterns": {
-      "Benny":{
-        "grey": 4
-      },
-      "Blythe":{
-        "stripes": 3
-      },
-      "Betty":{
-        "hearts":2
-      },
-      "Barney":{
-        "zigzag": 3
-      }
+    "traits": {
+      "Benny":{"pattern":"grey", "id":1},
+      "Blythe":{ "pattern":"stripes", "id":2},
+      "Betty":{"pattern":"hearts", "id":3},
+      "Barney":{"pattern":"zigzag", "id":4}
     }
       
     

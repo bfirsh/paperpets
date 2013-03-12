@@ -1,6 +1,6 @@
 {
     "name": "the Penguin",
-    "probability": 5,
+    "probability": 2,
     "steps": [
         "Plain side up, fold in the corners",
         "Fold in again",
@@ -12,24 +12,16 @@
     ],
     
     "characters": {
-      "Phil":7,
+      "Phil":2,
       "Pawel":2,
-      "Petra":1,
-      "Patsy":1
+      "Petra":4,
+      "Patsy":2
     },
     
-    "patterns": {
-      "Phil":{
-        "stripes": 4
-      },
-      "Pawel":{
-        "bricks": 3
-      },
-      "Petra":{
-        "check":2
-      },
-      "Patsy":{
-        "hearts": 3
-      }
+    "traits": {
+      "Phil":{"pattern":"stripes", "id":10},
+      "Pawel":{"pattern":"bricks", "id":11},
+      "Petra":{"pattern":"check", "id":12},
+      "Patsy":{"pattern":"hearts", "id":13}
     }    
 }

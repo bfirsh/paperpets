@@ -1,6 +1,6 @@
 {
     "name": "the Dino",
-    "probability": 10,
+    "probability": 1,
     "steps": [
         "Looking at the blank side, fold in half",
         "Fold the bottom corner into the center fold line",
@@ -12,21 +12,14 @@
     ],
     
     "characters": {
-       "Doris":7,
-       "Dennis":2,
+       "Doris":6,
+       "Dennis":3,
        "Daisy":1
      },
 
-     "patterns": {
-       "Doris":{
-         "stripes": 4
-       },
-       "Dennis":{
-         "diamonds": 3
-       },
-       "Daisy":{
-         "scales":2
-       }
-    
+     "traits": {
+       "Doris":{"pattern":"stripes", "id":18},
+       "Dennis":{"pattern":"diamonds", "id":19},
+       "Daisy":{"pattern":"scales","id":20}
     }
 }
