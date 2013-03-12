@@ -35,57 +35,64 @@ def edition():
         date = dateutil.parser.parse(request.args['local_delivery_time'])
     else:
         date = datetime.date.today()
+    
+    response = make_response()
+    
+    # only return a pet if its a weekend
+    if date.weekday() == 5 or date.weekday == 6:
 
-    # Pick random animal
-    pet_names = pets.keys()
-    weights = [pets[name].get('probability', 1) for name in pet_names]
-    pet = request.args.get('pet', pet_names[weighted_choice(weights)])
+      # Pick random animal
+      pet_names = pets.keys()
+      weights = [pets[name].get('probability', 1) for name in pet_names]
+      pet = request.args.get('pet', pet_names[weighted_choice(weights)])
     
     
-    # Pick characters within chosen animal
-    character_names = pets[pet]['characters'].keys()
-    weights = [pets[pet]['characters'][character] for character in character_names]
+      # Pick characters within chosen animal
+      character_names = pets[pet]['characters'].keys()
+      weights = [pets[pet]['characters'][character] for character in character_names]
     
-    character_name = request.args.get('character_name', character_names[weighted_choice(weights)])
+      character_name = request.args.get('character_name', character_names[weighted_choice(weights)])
 
-    rarity = pets[pet]['characters'][character] * pets[name].get('probability', 1)
-    rarity_descriptor =''
+      rarity = pets[pet]['characters'][character] * pets[name].get('probability', 1)
+      rarity_descriptor =''
     
-    # rarity scale used in ebay coin collecting
-    if rarity == 1:
-      rarity_descriptor = 'extremely rare'
-    elif rarity == 2:
-      rarity_descriptor = 'very rare'
-    elif rarity == 3:
-      rarity_descriptor = 'rare'
+      # rarity scale used in ebay coin collecting
+      if rarity == 1:
+        rarity_descriptor = 'extremely rare'
+      elif rarity == 2:
+        rarity_descriptor = 'very rare'
+      elif rarity == 3:
+        rarity_descriptor = 'rare'
  
     
-    variations = {}
-    variations['pattern'] = pets[pet]['traits'][character_name]['pattern']
-    variations['character'] = character_name.lower()
+      variations = {}
+      variations['pattern'] = pets[pet]['traits'][character_name]['pattern']
+      variations['character'] = character_name.lower()
     
     
     
-    # Log edition
-    if db is not None:
-      db.editions.insert({
-          # convert datetime.date to datetime.datetime
-          'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
-          'generation_date': datetime.datetime.utcnow(),
-          'user_id': user_id,
-          'name': name,
-          'pet': pet,
-          'variations': variations
-      })
+      # Log edition
+      if db is not None:
+        db.editions.insert({
+            # convert datetime.date to datetime.datetime
+            'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
+            'generation_date': datetime.datetime.utcnow(),
+            'user_id': user_id,
+            'name': name,
+            'pet': pet,
+            'variations': variations
+        })
 
-    response = make_response(render_template('edition.html', 
-        pet=pet,
-        meta=pets[pet],
-        name=character_name,
-        variations=variations,
-        rarity=rarity_descriptor,
-        pet_id=pets[pet]['traits'][character_name]['id']
-    ))
+      response = make_response(render_template('edition.html', 
+          pet=pet,
+          meta=pets[pet],
+          name=character_name,
+          variations=variations,
+          rarity=rarity_descriptor,
+          pet_id=pets[pet]['traits'][character_name]['id']
+      ))
+      
+    
     etag = "%032x" % random.getrandbits(128)
     response.headers['ETag'] = etag
     return response
