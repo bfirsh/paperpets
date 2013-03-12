@@ -1,0 +1,30 @@
+All foxes are sophisticated
+- Fisal | nerdy | check
+- Farrah | sophisticated | houndstooth
+- Fenton | friendly | stripes
+- Frank | cool | chess
+- Freddy | sleepy | large-cross
+
+All bunnies are cute
+- Benny | friendly | grey
+- Betty | girly | hearts
+- Blythe | happy | stripes
+- Barney | relaxed | zigzag
+
+All dinosaurs are fierce
+- Doris | angry | stripes
+- Dennis | exasperated | diamonds
+- Daisy | happy | scales
+
+All penguins are [something]
+- Petra | alert | check
+- Pawel | happy | bricks
+- Patsy | cute | hearts
+- Phil | alert | stripes
+
+
+All whales are grownups
+- Wally | friendly | alt-dots
+- Wanda | happy | diamonds
+- Wendy | relaxed | stripes
+- Wilbert | cool | blocks
