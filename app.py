@@ -27,7 +27,6 @@ def index():
 @app.route("/sample/")
 def sample():
   response = make_response(render_template('sample.html'))
-  
   return response
 
   
@@ -78,16 +77,16 @@ def edition():
     
     
       # Log edition
-      if db is not None:
-        db.editions.insert({
-            # convert datetime.date to datetime.datetime
-            'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
-            'generation_date': datetime.datetime.utcnow(),
-            'user_id': user_id,
-            'name': name,
-            'pet': pet,
-            'variations': variations
-        })
+      #if db is not None:
+      #  db.editions.insert({
+      #     # convert datetime.date to datetime.datetime
+      #      'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
+      #      'generation_date': datetime.datetime.utcnow(),
+      #      'user_id': user_id,
+      #      'name': name,
+      #      'pet': pet,
+      #      'variations': variations
+      #  })
 
       response = make_response(render_template('edition.html', 
           pet=pet,
