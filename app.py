@@ -29,41 +29,41 @@ def index():
 def edition():
     # NO CHEATING
     random.seed()
-
+    
     # Berg stuff
     if request.args.get('local_delivery_time', False):
         date = dateutil.parser.parse(request.args['local_delivery_time'])
     else:
         date = datetime.date.today()
 
-    lang = request.args.get('lang', 'english')
-    name = request.args.get('name', 'Little Printer')
-
-    # Our stuff
-    user_id = request.args.get('user_id')
-
-    # Pick random pet
+    # Pick random animal
     pet_names = pets.keys()
     weights = [pets[name].get('probability', 1) for name in pet_names]
-
     pet = request.args.get('pet', pet_names[weighted_choice(weights)])
-
-    # Pick characters
+    
+    
+    # Pick characters within chosen animal
     character_names = pets[pet]['characters'].keys()
     weights = [pets[pet]['characters'][character] for character in character_names]
     
-    character_name = character_names[weighted_choice(weights)]
+    character_name = request.args.get('character_name', character_names[weighted_choice(weights)])
 
-    # Pick patterns
-    patterns = {}
-    pattern_names = pets[pet]['patterns'][character_name].keys()
-    weights = [pets[pet]['patterns'][character_name][pattern] for pattern in pattern_names]
-
-    pattern = pattern_names[weighted_choice(weights)]
+    rarity = pets[pet]['characters'][character] * pets[name].get('probability', 1)
+    rarity_descriptor =''
+    
+    # rarity scale used in ebay coin collecting
+    if rarity == 1:
+      rarity_descriptor = 'extremely rare'
+    elif rarity == 2:
+      rarity_descriptor = 'very rare'
+    elif rarity == 3:
+      rarity_descriptor = 'rare'
+ 
     
     variations = {}
-    variations['pattern'] = pattern
+    variations['pattern'] = pets[pet]['traits'][character_name]['pattern']
     variations['character'] = character_name.lower()
+    
     
     
     # Log edition
@@ -73,10 +73,9 @@ def edition():
           'local_delivery_time': datetime.datetime.combine(date, datetime.time()),
           'generation_date': datetime.datetime.utcnow(),
           'user_id': user_id,
-          'lang': lang,
           'name': name,
           'pet': pet,
-          'variations': variations,
+          'variations': variations
       })
 
     response = make_response(render_template('edition.html', 
@@ -84,10 +83,13 @@ def edition():
         meta=pets[pet],
         name=character_name,
         variations=variations,
+        rarity=rarity_descriptor,
+        pet_id=pets[pet]['traits'][character_name]['id']
     ))
     etag = "%032x" % random.getrandbits(128)
     response.headers['ETag'] = etag
     return response
+
 
 @app.route('/configure/')
 def configure():
@@ -97,6 +99,7 @@ def configure():
     # Generate a unique ID so we can identify folks who have pets
     user_id = uuid.uuid4()
     return redirect('%s?config[user_id]=%s' % (return_url, user_id))
+
 
 #Validate config e.g. /validate_config/?config={"lang":"english","name":"Pablo"}
 @app.route("/validate_config/")
@@ -125,10 +128,12 @@ def validate_config():
     response.mimetype = 'application/json'
     return response
 
+
 # Add the routes for the static files so they are at root
 @app.route('/meta.json')
 def meta_json():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'meta.json', mimetype='application/json')
+
 
 @app.route('/icon.png')
 def icon():
@@ -141,11 +146,12 @@ def load_pets():
     """
     pets = {}
     #pet_names = os.listdir(os.path.join(app.static_folder, 'pets'))
-    pet_names = ['fox', 'whale', 'penguin', 'dino', 'bunny']
+    pet_names =['fox', 'penguin', 'dino', 'whale', 'bunny']
     for name in pet_names:
         pet_dir = os.path.join(app.static_folder, 'pets', name)
         pets[name] = json.load(open(os.path.join(pet_dir, 'meta.json')))
     return pets
+
 
 def weighted_choice(weights):
     """
