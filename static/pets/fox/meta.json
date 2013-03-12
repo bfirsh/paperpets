@@ -1,33 +1,28 @@
 {
-    "name": "Fenton the Fox",
-    "probability": 20,
+    "name": "the Fox",
+    "probability": 2,
     "steps": [
         "Looking at the blank side, fold the paper in half",
         "Fold the front flap up",
         "And do the same to the back flap",
         "Crease over the line",
-        "Stick your finger inbetween the top and flatten it out",
-        "Fenton should now be looking foxy"
+        "Stick your finger in-between the top and flatten it out",
+        "Looking foxy"
     ],
-    "variations": {
-        "eyes": {
-            "glee": 6,
-            "asleep": 4,
-	    "glasses":2,
-	    "sun-glasses":1,
-	    "scrunched":3
-        },
-        "pattern": {
-            "": 5,
-            "small-cross": 3,
-            "large-cross": 3,
-            "dotted": 3,
-            "alt-dots": 3,
-	    "blocks":2,
-	    "diamonds":2,
-	    "houndstooth":2,
-            "stars":1,
-	    "stripes":2
-        }
+    
+    "characters": {
+      "Fenton":4,
+      "Freddy":3,
+      "Frank":1,
+      "Faisal":1,
+      "Farrah":1
+    },
+    
+    "traits": {
+      "Fenton":{"pattern":"stripes", "id":5},
+      "Freddy":{"pattern":"large-cross", "id":6},
+      "Frank":{"pattern":"chess","id":7},
+      "Faisal":{"pattern":"check","id":8},
+      "Farrah":{"pattern":"houndstooth","id":9}
     }
 }

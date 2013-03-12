@@ -1,6 +1,6 @@
 {
-    "name": "Wally the Whale",
-    "probability": 5,
+    "name": "the Whale",
+    "probability": 2,
     "steps": [
         "Fold in half to crease",
         "Flip and fold in the sides",
@@ -9,19 +9,19 @@
         "Crease the tail",
         "Fold up the tail to finish"
     ],
-    "variations": {
-        "pattern": {
-            "": 8,
-            "dotted": 2,
-            "large-cross": 2,
-            "small-cross": 2,
-            "alt-dots": 2,
-	    "blocks":2,
-	    "diamonds":2,
-   	    "houndstooth":2,
-	    "stars":2,
-  	    "stripes":2,
-            "zig-zag":2
-        }
+    
+    "characters": {
+      "Wally":5,
+      "Wendy":3,
+      "Wanda":1,
+      "Wilbert":1
+    },
+    
+    "traits": {
+      "Wally":{"pattern":"alt-dots", "id": 14},
+      "Wanda":{"pattern":"diamonds", "id":15},
+      "Wendy":{"pattern":"stripes", "id": 16},
+      "Wilbert":{"pattern":"blocks", "id": 17}
     }
+
 }

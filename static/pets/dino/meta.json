@@ -1,8 +1,8 @@
 {
-    "name": "Doris the Dino",
-    "probability": 10,
+    "name": "the Dino",
+    "probability": 1,
     "steps": [
-        "Looking at the [BLANK / LINES] side, fold in half",
+        "Looking at the blank side, fold in half",
         "Fold the bottom corner into the center fold line",
         "Fold the top corner over and the leftward of the fold line",
         "Fold the new top & bottom corners to the center hold line",
@@ -10,21 +10,16 @@
         "Fold the tail forward and the mouth bit back",
         "Dinoriffic!"
     ],
-    "variations": {
-        "eyes": {
-            "fierce": 5,
-	    "smiling":2,
-	    "scrunched":1
-        },
-        "pattern": {
-            "":7,
-            "blocks": 1,
-	    "diamonds":2,
-	    "grey":3,
-	    "houndstooth":2,
-	    "scales":5,
-	    "stars":3,
-	    "stripes":4
-        }
+    
+    "characters": {
+       "Doris":6,
+       "Dennis":3,
+       "Daisy":1
+     },
+
+     "traits": {
+       "Doris":{"pattern":"stripes", "id":18},
+       "Dennis":{"pattern":"diamonds", "id":19},
+       "Daisy":{"pattern":"scales","id":20}
     }
 }
