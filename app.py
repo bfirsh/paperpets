@@ -24,8 +24,12 @@ except pymongo.errors.ConnectionFailure, e:
 def index():
     return make_response(render_template('index.html'))
 
-@app.route("/edition/")
 @app.route("/sample/")
+def sample():
+  return send_from_directory(os.path.join(app.root_path, 'static'), 'sample.png', mimetype='image/png')
+
+  
+@app.route("/edition/")
 def edition():
     # NO CHEATING
     random.seed()
@@ -95,44 +99,6 @@ def edition():
     
     etag = "%032x" % random.getrandbits(128)
     response.headers['ETag'] = etag
-    return response
-
-
-@app.route('/configure/')
-def configure():
-    return_url = request.args.get('return_url')
-    if not return_url:
-        return 'no return_url argument'
-    # Generate a unique ID so we can identify folks who have pets
-    user_id = uuid.uuid4()
-    return redirect('%s?config[user_id]=%s' % (return_url, user_id))
-
-
-#Validate config e.g. /validate_config/?config={"lang":"english","name":"Pablo"}
-@app.route("/validate_config/")
-def validate_config():
-    json_response = {'errors': [], 'valid': True}
-
-    # Extract config from POST
-    user_settings = json.loads(request.args['config'])
-    
-    # If the user did choose a language:
-    if not user_settings.get('lang', None):
-        json_response['valid'] = False
-        json_response['errors'].append('Please select a language from the select box.')
-
-    # If the user did not fill in the name option:
-    if not user_settings.get('name', None):
-        json_response['valid'] = False
-        json_response['errors'].append('Please enter your name into the name box.')
-
-    # Is a valid language set?
-    if user_settings.get('language', None) in greetings:
-        json_response['valid'] = False
-        json_response['errors'].append("We couldn't find the language you selected (%s) Please select another" % user_settings['language'])
-    
-    response = make_response(json.dumps(json_response))
-    response.mimetype = 'application/json'
     return response
 
 
